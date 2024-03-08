@@ -1,14 +1,15 @@
-'use client';
+"use client";
 import React from "react";
 import Link from "next/link";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 const Navbar = () => {
+  const { user, isLoaded } = useUser();
   const mainHead = [
     { head: "Home", link: "/" },
     { head: "Skin Care", link: "/" },
     { head: "Offer Zone", link: "/" },
     { head: "All Products", link: "/users/Allproducts" },
-    { head: "Admin Page", link: "/admin" },
   ];
 
   return (
@@ -42,9 +43,20 @@ const Navbar = () => {
           })}
         </ul>
       </div>
-      <div className="navbar-end basis-1/4">
+      <div className="navbar-end basis-1/3 flex justify-between align-middle">
+        <div>
+          {isLoaded && user ? (
+            <div className=" hidden lg:flex">
+              <UserButton afterSignOutUrl="/" />
+            </div>
+          ) : (
+            <Link className="btn btn-primary hidden lg:flex" href="/users/sign-in">
+              Sign In
+            </Link>
+          )}
+        </div>
         <div className="hidden lg:flex">
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center">
             <input type="text" className="grow" placeholder="Search" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
