@@ -7,7 +7,6 @@ const Navbar = () => {
   const { user, isLoaded } = useUser();
   const mainHead = [
     { head: "Home", link: "/" },
-    { head: "Skin Care", link: "/" },
     { head: "Offer Zone", link: "/" },
     { head: "All Products", link: "/users/Allproducts" },
   ];
@@ -32,7 +31,7 @@ const Navbar = () => {
           </svg>
         </div>
       </div>
-      <div className="navbar-center basis-1/2 hidden lg:flex">
+      <div className="navbar-center basis-1/4 hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           {mainHead.map((head, key) => {
             return (
